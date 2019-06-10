@@ -6,19 +6,12 @@ import os
 from Correct_typing import correct_typing
 
 
-staff = pd.read_csv(r"C:\Users\Sabri.GASMI\Desktop\ALDI\ALDI_ABLIS_STAFF_CLAIRE.csv",encoding="ansi", sep=";",decimal=',')
 
-
-path = r'C:\Users\Sabri.GASMI\Desktop\ALDI'
-#print(path)
-#all_files = glob.glob(path + "/*.csv")
-
-#for val in all_files:
- #   print(val)
-
-dataframe_ref = list(staff["Matricule"].values)
-dataframe_ref = set(dataframe_ref)
-
+def staff(staff_file):
+    staff = pd.read_csv(staff_file, encoding="ansi", sep=";", decimal=',')
+    staff = list(staff["Matricule"].values)
+    staff = set(staff)
+    return staff
 
 def split(file, dataframe_ref):
 
@@ -36,7 +29,6 @@ def split(file, dataframe_ref):
 
     file = pd.read_csv(file, encoding="ansi", sep= ";")
     correct_typing(file)
-    print(file.dtypes)
 
     file_staff = file[file['Matricule'].isin(dataframe_ref)]
 
@@ -62,8 +54,8 @@ def split(file, dataframe_ref):
 #split(r"C:\Users\Sabri.GASMI\Desktop\ALDI\ALDI_ABLIS_STAFF_BASES ASSUJETTIES 042019.csv",dataframe_ref)
 
 
-all_files = glob.glob(path + "/*.csv")
-for val in all_files:
-    split(val,dataframe_ref)
+#all_files = glob.glob(path + "/*.csv")
+#for val in all_files:
+ #   split(val,dataframe_ref)
 
 #all_files = glob.glob(path + "/*.csv")
