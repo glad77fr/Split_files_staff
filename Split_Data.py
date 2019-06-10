@@ -9,7 +9,7 @@ from Correct_typing import correct_typing
 staff = pd.read_csv(r"C:\Users\Sabri.GASMI\Desktop\ALDI\ALDI_ABLIS_STAFF_CLAIRE.csv",encoding="ansi", sep=";",decimal=',')
 
 
-#path = r'C:\Users\Sabri.GASMI\Desktop\ALDI'
+path = r'C:\Users\Sabri.GASMI\Desktop\ALDI'
 #print(path)
 #all_files = glob.glob(path + "/*.csv")
 
@@ -18,7 +18,6 @@ staff = pd.read_csv(r"C:\Users\Sabri.GASMI\Desktop\ALDI\ALDI_ABLIS_STAFF_CLAIRE.
 
 dataframe_ref = list(staff["Matricule"].values)
 dataframe_ref = set(dataframe_ref)
-
 
 
 def split(file, dataframe_ref):
@@ -51,7 +50,7 @@ def split(file, dataframe_ref):
     else:
         os.mkdir(target_folder)
 
-    writer = pd.ExcelWriter(target_folder + file_name + "_STAFF.xlsx" , engine='xlsxwriter')
+    writer = pd.ExcelWriter(target_folder + file_name + "_STAFF.xlsx" , engine='xlsxwriter',date_format='DD-MM-YYYY')
     file_staff.to_excel(writer, sheet_name='Feuil1',index=False)
     writer.save()
 
@@ -60,6 +59,11 @@ def split(file, dataframe_ref):
     writer.save()
 
 
-split(r"C:\Users\Sabri.GASMI\Desktop\ALDI\ALDI_ABLIS_STAFF_BASES ASSUJETTIES 042019.csv",dataframe_ref)
+#split(r"C:\Users\Sabri.GASMI\Desktop\ALDI\ALDI_ABLIS_STAFF_BASES ASSUJETTIES 042019.csv",dataframe_ref)
+
+
+all_files = glob.glob(path + "/*.csv")
+for val in all_files:
+    split(val,dataframe_ref)
 
 #all_files = glob.glob(path + "/*.csv")

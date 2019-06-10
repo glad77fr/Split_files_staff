@@ -28,8 +28,8 @@ def correct_typing(dataframe):
                    #dataframe[dataframe.columns[y]] = dataframe[dataframe.columns[y]].astype('datetime64')
                    break
 
-               if r.match(str(dataframe.iat[i,y])):
-                   dataframe[dataframe.columns[y]] = dataframe[dataframe.columns[y]].apply(lambda x: str(x.replace(",",".")))
+               if r.match(str(dataframe.iat[i, y])):
+                   dataframe[dataframe.columns[y]] = dataframe[dataframe.columns[y]].apply(lambda x: str(x).replace(",", "."))
                    dataframe[dataframe.columns[y]] = dataframe[dataframe.columns[y]].astype('float64')
                    break
 
